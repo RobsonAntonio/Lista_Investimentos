@@ -70,6 +70,13 @@ margin: 10px;
 color: #0038a8;
 
 `;
-
+export const TextAviso = styled.Text`
+margin-bottom: 10px;
+margin-left: 15px;
+padding-left: 10px;
+font-size: 16px;
+color: red;
+font-weight: bold;
+`;
 
 

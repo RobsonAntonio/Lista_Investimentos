@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Texto, Button, ContainerModal, TextTituloAviso, TextAviso, TextAvisoAcao } from './styles';
 
 
@@ -7,8 +7,8 @@ function calculoSaldoMaximo(perc, valorTotal) {
     return ((perc / 100) * valorTotal).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
 }
 
-export default function ModalDetalhesError({ voltar, resgate, valorTotal }) {
-
+export default function ModalDetalhesError({ voltar,resgate, valorTotal }) {
+    
     return (
         <Container>
             <ContainerModal>
@@ -22,10 +22,14 @@ export default function ModalDetalhesError({ voltar, resgate, valorTotal }) {
                 </TextAviso>
 
 
-                {resgate.map(item => <TextAvisoAcao>{`${item.nome.substr(item.nome.indexOf('(')).replace('(', '').replace(')', '')}: Valor máximo de R$ ${calculoSaldoMaximo(item.percentual, valorTotal)}`}</TextAvisoAcao>)}
+                {
+                resgate.map(item => <TextAvisoAcao>{`${item.nome.substr(
+                    item.nome.indexOf('(')).replace('(', '').replace(')', '')}: Valor máximo de R$ ${calculoSaldoMaximo(item.percentual, valorTotal)}`}</TextAvisoAcao>)
+                }
 
 
                 <Button onPress={voltar}>
+                    
                     <Texto>CORRIGIR</Texto>
                 </Button>
             </ContainerModal>

@@ -52,6 +52,8 @@ export default function DetalhesInvestimentos() {
   const [resgate, setResgate] = useState([]);
   const route = useRoute();
   const { investimento } = route.params
+
+  
   let totalResgatar = 0
 
   resgate.map((item) => totalResgatar += parseFloat(item.valor))
@@ -59,8 +61,6 @@ export default function DetalhesInvestimentos() {
 
   function confirmarResgate(valorTotal, totalResgatar) {
 
-    console.log(totalResgatar)
-    console.log(valorTotal)
 
     let teste = 0
 
@@ -69,28 +69,34 @@ export default function DetalhesInvestimentos() {
       if (totalResgatar > ((item.percentual / 100) * investimento.saldoTotal)) {
         teste++
       }
-
+      
     })
-    console.log(resgate)
-    console.log(teste)
-
-
+    
+    
     if (totalResgatar > valorTotal || teste > 0) {
-
+      
       setVisebleModalError(true)
+      
+      
     } else {
       setVisebleModal(true)
-
+      
+      
     }
-
   }
-
+  
+  
+  
+  
   function valorResgate(acao, valor) {
     const encontrado = resgate.filter(item => item.id != acao.id)
-
-    setResgate([...encontrado, { ...acao, valor }])
-
+    
+    setResgate([...encontrado,  {...acao, valor} ])
+    
   }
+
+
+
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
