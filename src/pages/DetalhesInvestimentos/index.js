@@ -53,14 +53,12 @@ export default function DetalhesInvestimentos() {
   const route = useRoute();
   const { investimento } = route.params
 
-  
   let totalResgatar = 0
 
   resgate.map((item) => totalResgatar += parseFloat(item.valor))
 
 
   function confirmarResgate(valorTotal, totalResgatar) {
-
 
     let teste = 0
 
@@ -69,34 +67,27 @@ export default function DetalhesInvestimentos() {
       if (totalResgatar > ((item.percentual / 100) * investimento.saldoTotal)) {
         teste++
       }
-      
     })
-    
-    
+
     if (totalResgatar > valorTotal || teste > 0) {
-      
+
       setVisebleModalError(true)
-      
-      
+
     } else {
       setVisebleModal(true)
-      
-      
     }
   }
-  
-  
-  
-  
-  function valorResgate(acao, valor) {
-    const encontrado = resgate.filter(item => item.id != acao.id)
-    
-    setResgate([...encontrado,  {...acao, valor} ])
-    
+
+  function valorResgate(acao, valorDigitado) {
+    const todosItensMenosSelecionado = resgate.filter(itemArray => itemArray.id != acao.id)
+
+    if (valorDigitado) {
+      setResgate([...todosItensMenosSelecionado, { ...acao, valor: valorDigitado }])
+
+    } else {
+      setResgate(todosItensMenosSelecionado)
+    }
   }
-
-
-
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>

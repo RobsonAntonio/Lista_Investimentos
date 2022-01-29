@@ -19,7 +19,6 @@ export default function TaskList({ data }) {
     return (
         <Container onPress={() => indicador()}>
 
-
             <ContainerTexto>
                 <Text>{data.nome} </Text>
                 <TextObjeto>{data.objetivo} </TextObjeto>
